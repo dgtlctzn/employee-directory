@@ -13,7 +13,7 @@ const url = "https://randomuser.me/api/?results=20";
     });
     const personas = data.results;
     // simplifies the random user api results to only applicable categories
-    modPersonas = [];
+    const modPersonas = [];
     for (const person of personas) {
         const newPersona = {
             image: person.picture.thumbnail,
@@ -24,7 +24,7 @@ const url = "https://randomuser.me/api/?results=20";
         }
         modPersonas.push(newPersona);
     }
-    fs.writeFile("./src/seeds.json", JSON.stringify(modPersonas, null, 2), err => {
+    fs.writeFile("./src/components/Table/seeds.json", JSON.stringify(modPersonas, null, 2), err => {
         if (err) {
             console.log(err)
         }

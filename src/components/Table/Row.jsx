@@ -1,22 +1,22 @@
 import React from 'react';
 
-const Row = () => {
+const Row = ({image, name, phone, email, dob}) => {
     return (
         <tr>
             <td>
-                <img src="" alt=""/>
+                <img src={image} alt={name}/>
             </td>
             <td>
-                name
+                {name}
             </td>
             <td>
-                phone
+                {phone}
             </td>
             <td>
-                email
+                {email}
             </td>
             <td>
-                DOB
+                {dob}
             </td>
         </tr>
     );

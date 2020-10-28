@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import Row from "./Row";
+import seeds from "./seeds.json";
 
 class Table extends Component {
   render() {
     return (
       <table>
-        <Row />
-        <Row />
-        <Row />
-        <Row />
-        <Row />
+        {seeds.map((person) => (
+          <Row
+            image={person.image}
+            name={person.name}
+            email={person.email}
+            phone={person.phone}
+            dob={person.dob}
+          />
+        ))}
       </table>
     );
   }
