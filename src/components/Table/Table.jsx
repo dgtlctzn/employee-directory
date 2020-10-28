@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import Row from "./Row";
+import Header from "./Header";
 import seeds from "./seeds.json";
 
 class Table extends Component {
   render() {
     return (
       <table>
+        <thead>
+          <Header/>
+        </thead>
         <tbody>
           {seeds.map((person) => (
             <Row
