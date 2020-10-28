@@ -15,11 +15,11 @@ class Table extends Component {
       b = b.name.toUpperCase();
       if (a > b) {
           return 1;
-      }
-      if (a < b) {
+      } else if (a < b) {
           return -1;
+      } else {
+        return 0;
       }
-      return 0;
     });
     this.setState({
       currentPeople: sorted
@@ -31,7 +31,7 @@ class Table extends Component {
     return (
       <table>
         <thead>
-          <Header/>
+          <Header handleNameSort={this.handleNameSort}/>
         </thead>
         <tbody>
           {this.state.currentPeople.map((person) => (
