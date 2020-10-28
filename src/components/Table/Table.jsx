@@ -4,6 +4,28 @@ import Header from "./Header";
 import seeds from "./seeds.json";
 
 class Table extends Component {
+
+  state = {
+    currentPeople: seeds
+  }
+
+  handleNameSort = () => {
+    const sorted = this.state.currentPeople.sort((a, b) => {
+      a = a.toUpperCase();
+      b = b.toUpperCase();
+      if (a > b) {
+          return 1;
+      }
+      if (a < b) {
+          return -1;
+      }
+    });
+    this.setState({
+      currentPeople: sorted
+    });
+  }
+
+
   render() {
     return (
       <table>
