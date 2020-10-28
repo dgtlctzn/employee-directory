@@ -14,8 +14,11 @@ const url = "https://randomuser.me/api/?results=20";
     const personas = data.results;
     // simplifies the random user api results to only applicable categories
     const modPersonas = [];
+    let id = 0;
     for (const person of personas) {
+        id++;
         const newPersona = {
+            id: id,
             image: person.picture.thumbnail,
             name: `${person.name.first} ${person.name.last}`,
             phone: person.phone,

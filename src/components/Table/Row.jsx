@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Row = ({image, name, phone, email, dob}) => {
+const Row = ({id, image, name, phone, email, dob}) => {
     return (
         <tr>
             <td>
