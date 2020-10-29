@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Row from "./Row";
 import Header from "./Header";
-import seeds from "./seeds.json";
+import seeds from "../../Seeds/seeds.json";
 import Search from "../Search/Search";
 
 class Table extends Component {
@@ -94,6 +94,7 @@ class Table extends Component {
             ))}
           </tbody>
         </table>
+        {this.state.currentPeople.length === 0 && <h3>No Results Found</h3>}
       </>
     );
   }
