@@ -39,3 +39,7 @@ i {
 #name-sort:hover {
     cursor: pointer;
 }
+
+#no-results {
+    padding: 20px;
+}

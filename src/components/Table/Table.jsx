@@ -99,7 +99,7 @@ class Table extends Component {
           </table>
           {
             // An empty search displays an h3 tag on the page
-            this.state.currentPeople.length === 0 && <h3>No Results Found</h3>
+            this.state.currentPeople.length === 0 && <h3 className="text-center" id="no-results">No Results Found!</h3>
           }
         </div>
       </>
