@@ -42,7 +42,7 @@ class Table extends Component {
     event.preventDefault();
 
     const found = [];
-    // searches for match in seeds in name, phone, email, or dob category
+    // searches for match in seeds for name, phone, email, or dob category
     for (const item of seeds) {
       if (item.name.includes(this.state.searchInput)) {
         found.push(item);
@@ -57,12 +57,12 @@ class Table extends Component {
     this.setState({
       currentPeople: found,
       // searchInput: ""
-    })
+    });
   };
 
   handleInputChange = (event) => {
-    const value = event.target.value;
-    const name = event.target.name;
+    const { name, value } = event.target;
+
     this.setState({
       [name]: value,
     });
