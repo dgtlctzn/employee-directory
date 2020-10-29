@@ -94,7 +94,10 @@ class Table extends Component {
             ))}
           </tbody>
         </table>
-        {this.state.currentPeople.length === 0 && <h3>No Results Found</h3>}
+        {
+          // An empty search displays an h3 tag on the page
+          this.state.currentPeople.length === 0 && <h3>No Results Found</h3>
+        }
       </>
     );
   }
