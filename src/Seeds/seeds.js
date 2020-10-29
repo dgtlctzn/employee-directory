@@ -1,7 +1,7 @@
 const axios = require("axios");
 const fs = require("fs");
 
-const url = "https://randomuser.me/api/?results=20";
+const url = "https://randomuser.me/api/?results=40";
 
 // call to random user api to get seeds
 (async function toJson() {
@@ -20,14 +20,14 @@ const url = "https://randomuser.me/api/?results=20";
         const newPersona = {
             id: id,
             image: person.picture.thumbnail,
-            name: `${person.name.first} ${person.name.last}`,
+            name: `${person.name.last}, ${person.name.first}`,
             phone: person.phone,
             email: person.email,
-            dob: person.dob.date
+            dob: person.dob.date.split("T")[0]
         }
         modPersonas.push(newPersona);
     }
-    fs.writeFile("./src/components/Table/seeds.json", JSON.stringify(modPersonas, null, 2), err => {
+    fs.writeFile("./src/seeds/seeds.json", JSON.stringify(modPersonas, null, 2), err => {
         if (err) {
             console.log(err)
         }

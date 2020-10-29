@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Row from "./Row";
 import Header from "./Header";
-import seeds from "../../Seeds/seeds.json";
+import seeds from "../../seeds/seeds.json";
 import Search from "../Search/Search";
 import "./Table.css"
 
