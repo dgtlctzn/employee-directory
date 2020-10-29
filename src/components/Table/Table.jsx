@@ -9,16 +9,19 @@ class Table extends Component {
   state = {
     currentPeople: seeds,
     aToZ: false,
+    aToZIcon: "fas fa-sort-alpha-up",
     searchInput: "",
   };
 
   handleNameSort = () => {
+    let icon = "fas fa-sort-alpha-up";
     // alphabetizes names
     const sorted = this.state.currentPeople.sort((first, next) => {
       let [a, b] = [first.name.toUpperCase(), next.name.toUpperCase()];
       if (this.state.aToZ) {
         // sorts from z to a if sorted from a to z
         [b, a] = [a, b];
+        icon = "fas fa-sort-alpha-down-alt"
       }
       // sorts from a to z if not sorted or sorted from z to a
       if (a > b) {
@@ -33,6 +36,7 @@ class Table extends Component {
       currentPeople: sorted,
       // keeps track of how list is sorted
       aToZ: !this.state.aToZ,
+      aToZIcon: icon
     });
   };
 
@@ -78,7 +82,7 @@ class Table extends Component {
         <div className="container">
           <table>
             <thead>
-              <Header handleNameSort={this.handleNameSort} />
+              <Header handleNameSort={this.handleNameSort} icon={this.state.aToZIcon}/>
             </thead>
             <tbody>
               {this.state.currentPeople.map((person) => (

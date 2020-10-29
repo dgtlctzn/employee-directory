@@ -30,3 +30,8 @@ table th {
 img {
     border-radius: 5px;
 }
+
+i {
+    color: gray;
+    padding-left: 20px;
+}
