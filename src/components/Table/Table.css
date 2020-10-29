@@ -35,3 +35,7 @@ i {
     color: gray;
     padding-left: 20px;
 }
+
+#name-sort:hover {
+    cursor: pointer;
+}
