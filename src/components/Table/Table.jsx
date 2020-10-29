@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Row from "./Row";
 import Header from "./Header";
 import seeds from "./seeds.json";
+import Search from "../Search/Search"
 
 class Table extends Component {
   state = {
@@ -36,8 +37,34 @@ class Table extends Component {
     });
   };
 
+  handleSearch = (event) => {
+    event.preventDefault();
+
+    const found = [];
+    for (const item of this.state.currentPeople) {
+      if (item.name.includes("Alex")) {
+        found.push(item);
+      }
+      // switch(item) {
+      //   case item.name.includes("Alex"):
+      //     found.push(item);
+      //     break;
+      //   // case item.email.includes("alex"):
+      //   //   found.push(item);
+      //   default:
+      //     return this.state.currentPeople;
+      // }
+    }
+    console.log(found)
+    this.setState({
+      currentPeople: found
+    })
+  }
+
   render() {
     return (
+      <>
+      <Search handleSearch={this.handleSearch}/>
       <table>
         <thead>
           <Header handleNameSort={this.handleNameSort} />
@@ -55,6 +82,7 @@ class Table extends Component {
           ))}
         </tbody>
       </table>
+      </>
     );
   }
 }
