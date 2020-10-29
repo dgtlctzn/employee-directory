@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import Row from "./Row";
 import Header from "./Header";
 import seeds from "./seeds.json";
-import Search from "../Search/Search"
+import Search from "../Search/Search";
 
 class Table extends Component {
   state = {
     currentPeople: seeds,
     byFirst: false,
+    searchInput: "",
   };
 
   handleNameSort = () => {
@@ -39,49 +40,64 @@ class Table extends Component {
 
   handleSearch = (event) => {
     event.preventDefault();
-
+    console.log(seeds);
+    this.setState({
+      currentPeople: seeds
+    })
+    // console.log(this.state.searchInput);
     const found = [];
     for (const item of this.state.currentPeople) {
-      if (item.name.includes("Alex")) {
+      if (item.name.includes(this.state.searchInput)) {
+        found.push(item);
+      } else if (item.phone.includes(this.state.searchInput)) {
+        found.push(item);
+      } else if (item.email.includes(this.state.searchInput)) {
+        found.push(item);
+      } else if (item.dob.includes(this.state.searchInput)) {
         found.push(item);
       }
-      // switch(item) {
-      //   case item.name.includes("Alex"):
-      //     found.push(item);
-      //     break;
-      //   // case item.email.includes("alex"):
-      //   //   found.push(item);
-      //   default:
-      //     return this.state.currentPeople;
-      // }
     }
     console.log(found)
     this.setState({
-      currentPeople: found
+      currentPeople: found,
+      // searchInput: ""
     })
-  }
+  };
+
+  handleInputChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+    this.setState({
+      [name]: value,
+    });
+  };
 
   render() {
     return (
       <>
-      <Search handleSearch={this.handleSearch}/>
-      <table>
-        <thead>
-          <Header handleNameSort={this.handleNameSort} />
-        </thead>
-        <tbody>
-          {this.state.currentPeople.map((person) => (
-            <Row
-              key={person.id}
-              image={person.image}
-              name={person.name}
-              email={person.email}
-              phone={person.phone}
-              dob={person.dob}
-            />
-          ))}
-        </tbody>
-      </table>
+        <Search
+          handleInputChange={this.handleInputChange}
+          handleSearch={this.handleSearch}
+          name="searchInput"
+          value={this.state.search}
+        />
+        <table>
+          <thead>
+            <Header handleNameSort={this.handleNameSort} />
+          </thead>
+          <tbody>
+            {this.state.currentPeople.map((person) => (
+              <Row
+                key={person.id}
+                image={person.image}
+                name={person.name}
+                email={person.email}
+                phone={person.phone}
+                dob={person.dob}
+              />
+            ))}
+          </tbody>
+        </table>
       </>
     );
   }
