@@ -3,6 +3,7 @@ import Row from "./Row";
 import Header from "./Header";
 import seeds from "../../Seeds/seeds.json";
 import Search from "../Search/Search";
+import "./Table.css"
 
 class Table extends Component {
   state = {
@@ -14,7 +15,7 @@ class Table extends Component {
   handleNameSort = () => {
     // alphabetizes names
     const sorted = this.state.currentPeople.sort((first, next) => {
-      let [a, b] = [first.name.toUpperCase(), next.name.toUpperCase()]
+      let [a, b] = [first.name.toUpperCase(), next.name.toUpperCase()];
       if (this.state.aToZ) {
         // sorts from z to a if sorted from a to z
         [b, a] = [a, b];
@@ -74,27 +75,29 @@ class Table extends Component {
           name="searchInput"
           value={this.state.search}
         />
-        <table>
-          <thead>
-            <Header handleNameSort={this.handleNameSort} />
-          </thead>
-          <tbody>
-            {this.state.currentPeople.map((person) => (
-              <Row
-                key={person.id}
-                image={person.image}
-                name={person.name}
-                email={person.email}
-                phone={person.phone}
-                dob={person.dob}
-              />
-            ))}
-          </tbody>
-        </table>
-        {
-          // An empty search displays an h3 tag on the page
-          this.state.currentPeople.length === 0 && <h3>No Results Found</h3>
-        }
+        <div className="container">
+          <table>
+            <thead>
+              <Header handleNameSort={this.handleNameSort} />
+            </thead>
+            <tbody>
+              {this.state.currentPeople.map((person) => (
+                <Row
+                  key={person.id}
+                  image={person.image}
+                  name={person.name}
+                  email={person.email}
+                  phone={person.phone}
+                  dob={person.dob}
+                />
+              ))}
+            </tbody>
+          </table>
+          {
+            // An empty search displays an h3 tag on the page
+            this.state.currentPeople.length === 0 && <h3>No Results Found</h3>
+          }
+        </div>
       </>
     );
   }
