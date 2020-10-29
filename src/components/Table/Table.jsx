@@ -4,34 +4,43 @@ import Header from "./Header";
 import seeds from "./seeds.json";
 
 class Table extends Component {
-
   state = {
-    currentPeople: seeds
-  }
+    currentPeople: seeds,
+    byFirst: false,
+  };
 
   handleNameSort = () => {
+    // alphabetizes names
     const sorted = this.state.currentPeople.sort((a, b) => {
-      a = a.name.toUpperCase();
-      b = b.name.toUpperCase();
+      if (!this.state.byFirst) {
+        // sorts by first name if not sorted or sorted by last name
+        a = a.name.toUpperCase();
+        b = b.name.toUpperCase();
+      } else if (this.state.byFirst) {
+        // sorts by last name if sorted by first name
+        a = a.name.split(" ")[1].toUpperCase();
+        b = b.name.split(" ")[1].toUpperCase();
+      }
       if (a > b) {
-          return 1;
+        return 1;
       } else if (a < b) {
-          return -1;
+        return -1;
       } else {
         return 0;
       }
     });
     this.setState({
-      currentPeople: sorted
+      currentPeople: sorted,
+      // keeps track of how list is sorted
+      byFirst: !this.state.byFirst,
     });
-  }
-
+  };
 
   render() {
     return (
       <table>
         <thead>
-          <Header handleNameSort={this.handleNameSort}/>
+          <Header handleNameSort={this.handleNameSort} />
         </thead>
         <tbody>
           {this.state.currentPeople.map((person) => (
