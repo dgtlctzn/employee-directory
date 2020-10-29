@@ -7,22 +7,19 @@ import Search from "../Search/Search";
 class Table extends Component {
   state = {
     currentPeople: seeds,
-    byFirst: false,
+    aToZ: false,
     searchInput: "",
   };
 
   handleNameSort = () => {
     // alphabetizes names
-    const sorted = this.state.currentPeople.sort((a, b) => {
-      if (!this.state.byFirst) {
-        // sorts by first name if not sorted or sorted by last name
-        a = a.name.toUpperCase();
-        b = b.name.toUpperCase();
-      } else if (this.state.byFirst) {
-        // sorts by last name if sorted by first name
-        a = a.name.split(" ")[1].toUpperCase();
-        b = b.name.split(" ")[1].toUpperCase();
+    const sorted = this.state.currentPeople.sort((first, next) => {
+      let [a, b] = [first.name.toUpperCase(), next.name.toUpperCase()]
+      if (this.state.aToZ) {
+        // sorts from z to a if sorted from a to z
+        [b, a] = [a, b];
       }
+      // sorts from a to z if not sorted or sorted from z to a
       if (a > b) {
         return 1;
       } else if (a < b) {
@@ -34,7 +31,7 @@ class Table extends Component {
     this.setState({
       currentPeople: sorted,
       // keeps track of how list is sorted
-      byFirst: !this.state.byFirst,
+      aToZ: !this.state.aToZ,
     });
   };
 
